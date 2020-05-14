@@ -25,7 +25,10 @@ open with:
 >> RFs = numpy.load('centeredRFs_L2.npy')
 
 A numpy array of the size (azimuth x elevation x cell_number x time) or (11x11xcell_numberx150)
-All RFs have been centered and cropped such that the center of each cells RF is located at: RFs[5,5,:,30]
+All RFs have been centered and cropped such that the center of each cells RF is located at: RFs[5,5,:,120]
+The time axis extends from -2 seconds (stimulus history) to +0.5 seconds.
+The space axes are in pixels on the area. In elevation, 54 pixels spanned 105 degrees of elevation / 13 cm. 
+In azimuth, 64 pixels spanned 180 degrees. 
 
 To obtain the average spatial RF over all cells:
 >> numpy.mean(RFs[:,:,:,30],axis = 2)
