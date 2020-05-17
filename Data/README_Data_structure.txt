@@ -36,11 +36,65 @@ To obtain the average spatial RF over all cells:
 To obtain the average temporal RF over all cells:
 >> numpy.mean(RFs[5,5,:,:], axis = 0)
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-++++++++++++++++++++++ Static natural scene experiments +++++++++++++++++++++++++++
-+++++++++++++++++++++++++++++++ Figure 4 +++++++++++++++++++++++++++++++++++++++++++
+
 
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++++++++++++++++++++++ Dynamic natural scene experiments ++++++++++++++++++++++++++
 ++++++++++++++++++++++++++++ Figure 5 and Figure S5 ++++++++++++++++++++++++++++++++
+
+
+#################### translimgs_L2.pkl and translimgs_Mi1.pkl ############################
+
+open with: 
+>> pandas.read_pickle('translimgs_L2.pkl')
+
+A pandas hierachical dataframe. 
+
+First level: 	'cells': 	'0', '1', '2', ... n
+Second level: 	'imgs': 	'0', '1', '2', ... '9'
+Third level: 	'data': 	'mean', 'error', 'trial0', 'trial1', 'trial2'
+
+Index: Time axis. Time point 0 indicates the beginning of the image movement. 
+
+To obtain the mean response of cell 53 to image 5: 
+>> df[53][5]['mean']
+
+
+################### locations_L2.pkl and locations_Mi1.pkl ######################
+
+open with: 
+>> pandas.read_pickle('locations_L2.pkl')
+
+A pandas dataframe. 
+Columns: 'phi', 'z' # the receptive field locations of each cell in azimuth (phi) and elevation (z)
+Rows: Individual cells.
+
+The cell numbers in the index correspond to the cell numbers in the hierachical index of the data (translimgs_L2.pkl ) 
+as well as the predictions. 
+
+To retrieve the receptive field location of cell number 53:
+>> df[53]
+
+
+################## predictions_L2.pkl and predictions_Mi1.pkl ###########################
+
+open with: 
+>> pandas.read_pickle('predictions_L2.pkl')
+
+A pandas hierachical dataframe analogous to the dataframes containing the data (translimgs_L2.pkl)
+
+First level: 	'cells': 	'0', '1', '2', ... n
+Second level: 	'imgs': 	'0', '1', '2', ... '9'
+Third level: 	'predictions': 	'Luminance prediction', 'RF prediction'
+
+Index: Time axis. Index 0 is the timepoint of the beginning of the image movement (Time = 0). Index 106 is 
+the timepoint of the end of the movement in one direction (Time = 7). 
+
+To retrieve the RF prediction for cell 53 to image 5:
+>> df[53][5]['RF prediction']
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++ Static natural scene experiments +++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++ Figure 4 +++++++++++++++++++++++++++++++++++++++++++
